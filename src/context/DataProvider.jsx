@@ -17,13 +17,15 @@ const DataProvider = ({children})=>{
         setIsAdultContent((prev) => !prev);
     };
 
+    const api_key = import.meta.env.VITE_API_KEY;
+
     useEffect(() => {
         console.log("Adult Content Mode Changed:", isAdultContent);
     }, [isAdultContent]);
 
     
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/movie/top_rated?include_adult=${isAdultContent ? "true" : "false"}&page=1&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+        const url = `https://api.themoviedb.org/3/movie/top_rated?include_adult=${isAdultContent ? "true" : "false"}&page=1&api_key=${api_key}`;
 
         fetch(url)
         .then(res => res.json())
@@ -32,7 +34,7 @@ const DataProvider = ({children})=>{
     , [isAdultContent])
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=23aa4e53c0afee4eae3f5f9282afadd0&with_original_language=hi&sort_by=popularity.desc`;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_original_language=hi&sort_by=popularity.desc`;
 
         fetch(url)
         .then(res => res.json())
@@ -41,7 +43,7 @@ const DataProvider = ({children})=>{
     , [isAdultContent])
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/discover/movie?api_key=23aa4e53c0afee4eae3f5f9282afadd0&with_genres=16&sort_by=popularity.desc`;
+        const url = `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&with_genres=16&sort_by=popularity.desc`;
 
         fetch(url)
         .then(res => res.json())
@@ -50,7 +52,7 @@ const DataProvider = ({children})=>{
     , [isAdultContent])
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/discover/tv?include_adult=${isAdultContent ? "true" : "false"}&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+        const url = `https://api.themoviedb.org/3/discover/tv?include_adult=${isAdultContent ? "true" : "false"}&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${api_key}`;
 
         fetch(url)
         .then(res => res.json())
@@ -61,7 +63,7 @@ const DataProvider = ({children})=>{
     
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/movie/upcoming?include_adult=${isAdultContent ? "true" : "false"}&language=en-US&page=1&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+        const url = `https://api.themoviedb.org/3/movie/upcoming?include_adult=${isAdultContent ? "true" : "false"}&language=en-US&page=1&api_key=${api_key}`;
 
         fetch(url)
         .then(res => res.json())
@@ -70,7 +72,7 @@ const DataProvider = ({children})=>{
     , [isAdultContent])
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/tv/top_rated?include_adult=${isAdultContent ? "true" : "false"}&language=en-US&page=1&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+        const url = `https://api.themoviedb.org/3/tv/top_rated?include_adult=${isAdultContent ? "true" : "false"}&language=en-US&page=1&api_key=${api_key}`;
 
         fetch(url)
         .then(res => res.json())
@@ -79,7 +81,7 @@ const DataProvider = ({children})=>{
     , [isAdultContent])
 
     useEffect(()=>{
-        fetch(`https://api.themoviedb.org/3/trending/all/week?include_adult=${isAdultContent ? "true" : "false"}&api_key=23aa4e53c0afee4eae3f5f9282afadd0`)
+        fetch(`https://api.themoviedb.org/3/trending/all/week?include_adult=${isAdultContent ? "true" : "false"}&api_key=${api_key}`)
         .then(res => res.json())
         .then(res=>{
             setbannerdata(res);
@@ -88,7 +90,7 @@ const DataProvider = ({children})=>{
     },[isAdultContent])
 
     useEffect(()=>{
-        const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${isAdultContent ? "true" : "false"}&page=1&include_video=false&language=en-US&sort_by=popularity.desc&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+        const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${isAdultContent ? "true" : "false"}&page=1&include_video=false&language=en-US&sort_by=popularity.desc&api_key=${api_key}`;
       
         fetch(url)
         .then(res => res.json())

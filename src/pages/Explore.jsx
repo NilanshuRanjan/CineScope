@@ -12,6 +12,8 @@ const ExplorePage = () => {
   const [seriesdata_ex, setSeriesDataEx] = useState({});
   const [page, setPage] = useState(1);
 
+  const api_key = import.meta.env.VITE_API_KEY
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" }); 
   }, [page]);
@@ -21,7 +23,7 @@ const ExplorePage = () => {
   }, [location]);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${isAdultContent ? "true" : "false"}&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+    const url = `https://api.themoviedb.org/3/discover/movie?include_adult=${isAdultContent ? "true" : "false"}&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${api_key}`;
 
     fetch(url)
       .then(res => res.json())
@@ -32,7 +34,7 @@ const ExplorePage = () => {
   }, [page, isAdultContent]);
 
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/discover/tv?include_adult=${isAdultContent ? "true" : "false"}&include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=23aa4e53c0afee4eae3f5f9282afadd0`;
+    const url = `https://api.themoviedb.org/3/discover/tv?include_adult=${isAdultContent ? "true" : "false"}&include_null_first_air_dates=false&language=en-US&page=${page}&sort_by=popularity.desc&api_key=${api_key}`;
 
     fetch(url)
       .then(res => res.json())
