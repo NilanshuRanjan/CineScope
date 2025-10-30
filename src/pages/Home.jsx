@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import HomeBanner from '../components/HomeBanner'
-import Homepagescroll from '../components/homepagescroll'
+import Homepagescroll from '../components/Homepagescroll'
 import DataContext from '../context/DataContext'
 
 const Home = () => {
