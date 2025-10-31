@@ -3,7 +3,7 @@ import DataContext from '../context/DataContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const ExplorePage = () => {
-  const { isAdultContent, toggleAdultContent} = useContext(DataContext);
+  const { isAdultContent, toggleAdultContent } = useContext(DataContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -12,7 +12,7 @@ const ExplorePage = () => {
   const [seriesdata_ex, setSeriesDataEx] = useState({});
   const [page, setPage] = useState(1);
 
-  const api_key = import.meta.env.VITE_API_KEY
+  const api_key = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" }); 
@@ -54,55 +54,69 @@ const ExplorePage = () => {
 
   const handleClick = (movie) => {
     const type =
-    movie.media_type ||
-    (movie.title ? "movie" : "series");
+      movie.media_type ||
+      (movie.title ? "movie" : "series");
 
     navigate(`/details/${type}/${movie.id}`);
   };
 
   return (
-    <section className="explore-page pt-20 px-10">
-      <h1 className="text-center text-4xl font-bold mb-8">
+    <section className="explore-page pt-20 px-3 sm:px-6 md:px-10">
+      <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold mb-8">
         {location.pathname === "/movie" ? "Explore Movies" : "Explore TV Shows"}
       </h1>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
-        {data && data.results && data.results.length > 0 ? (
+
+      <div className="grid
+        grid-cols-2
+        sm:grid-cols-3
+        md:grid-cols-4
+        lg:grid-cols-5
+        gap-4 sm:gap-6 md:gap-8"
+      >
+        {data?.results?.length > 0 ? (
           data.results.map((item) => (
             <div
               key={item.id}
-              className="movie-card relative overflow-hidden rounded-lg shadow-lg"
+              className="movie-card relative overflow-hidden rounded-lg shadow-lg hover:scale-105 transition-all"
               onClick={() => handleClick(item)}
             >
               <img
-                className="w-full h-[300px] object-cover"
+                className="w-full h-[220px] sm:h-[260px] md:h-[300px] object-cover"
                 src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
                 alt={item.title || item.name}
               />
-              <div className="p-4 text-white">
-                <h3 className="font-bold text-lg">{item.title || item.name}</h3>
-                <p className="text-sm">
+              <div className="p-3 sm:p-4 text-white">
+                <h3 className="font-bold text-sm sm:text-lg truncate">
+                  {item.title || item.name}
+                </h3>
+                <p className="text-xs sm:text-sm opacity-80">
                   {item.release_date
-                    ? `Release Date: ${item.release_date}`
+                    ? `Release: ${item.release_date}`
                     : "No Release Date"}
                 </p>
               </div>
             </div>
           ))
         ) : (
-          <p className="text-white text-center">Loading...</p>
+          <p className="text-white text-center col-span-full">Loading...</p>
         )}
       </div>
-      <div className="flex justify-center mt-8">
+
+      <div className="flex justify-center mt-8 gap-2">
         <button
-          className="bg-gray-700 text-white px-4 py-2 rounded mx-2 disabled:opacity-50"
+          className="bg-gray-700 text-white px-3 sm:px-4 py-2 rounded disabled:opacity-50"
           onClick={() => setPage(prev => Math.max(prev - 1, 1))}
           disabled={page === 1}
         >
           Previous
         </button>
-        <span className="text-white px-4 py-2">Page {page}</span>
+
+        <span className="text-white px-3 sm:px-4 py-2 text-sm sm:text-base">
+          Page {page}
+        </span>
+
         <button
-          className="bg-gray-700 text-white px-4 py-2 rounded mx-2"
+          className="bg-gray-700 text-white px-3 sm:px-4 py-2 rounded"
           onClick={() => setPage(prev => prev + 1)}
         >
           Next
