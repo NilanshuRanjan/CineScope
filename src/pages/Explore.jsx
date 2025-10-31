@@ -52,12 +52,11 @@ const ExplorePage = () => {
     }
   }, [moviesdata_ex, seriesdata_ex, location]);
 
-  const handleClick = (movie) => {
-    const type =
-      movie.media_type ||
-      (movie.title ? "movie" : "series");
+  // ✅ GET TYPE FROM URL ONLY
+  const urlType = location.pathname.includes("/movie") ? "movie" : "tv";
 
-    navigate(`/details/${type}/${movie.id}`);
+  const handleClick = (item) => {
+    navigate(`/details/${urlType}/${item.id}`);
   };
 
   return (
@@ -66,7 +65,8 @@ const ExplorePage = () => {
         {location.pathname === "/movie" ? "Explore Movies" : "Explore TV Shows"}
       </h1>
 
-      <div className="grid
+      <div
+        className="grid
         grid-cols-2
         sm:grid-cols-3
         md:grid-cols-4

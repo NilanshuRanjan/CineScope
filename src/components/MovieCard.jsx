@@ -6,8 +6,13 @@ const MovieCard = ({movie}) => {
   const navigate = useNavigate();
 
   const type =
-    movie.media_type ||
-    (movie.title ? "movie" : "series");
+      movie.media_type === "movie"
+        ? "movie"
+        : movie.media_type === "tv"
+        ? "tv"
+        : movie.title
+        ? "movie"
+        : "tv";
 
   const handleclick = () => {
     navigate(`/details/${type}/${movie.id}`);
