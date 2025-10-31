@@ -5,7 +5,9 @@ const MovieCard = ({movie}) => {
   const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
   const navigate = useNavigate();
 
-  const type =
+
+  const handleclick = () => {
+    const type =
       movie.media_type === "movie"
         ? "movie"
         : movie.media_type === "tv"
@@ -13,8 +15,6 @@ const MovieCard = ({movie}) => {
         : movie.title
         ? "movie"
         : "tv";
-
-  const handleclick = () => {
     navigate(`/details/${type}/${movie.id}`);
   };
 
