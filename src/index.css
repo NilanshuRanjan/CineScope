@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    @apply bg-neutral-900 text-neutral-300
+body {
+  @apply bg-neutral-900 text-neutral-300;
 }
 
 body::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
